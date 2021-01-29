@@ -1,0 +1,23 @@
+<h1>Tu carrito</h1>
+
+<% @articulos_pedidos.each do |artcl| %>
+  <h3><%= artcl.articulo.nombre %></h3>
+  <h5><%= artcl.articulo.precio %></h5>
+
+  <%= simple_form_for artcl, remote: true do |form| %>
+    <%= form.input :articulo_id, as: :hidden, input_html: { value: artcl.articulo.id } %>
+    <%= form.input :cantidad, as: :numeric, input_html: { value: artcl.cantidad.to_i, min: 1 }, label: false %>
+    <%= form.button :submit, "Actualizar cantidad" %>
+    <%= link_to 'Quitar artículo', articulos_pedido_path(artcl),
+        method: :delete,
+        remote: true %>
+  <% end %>
+
+  <h2>Subtotal: <%= artcl.total %></h2>
+<% end %>
+
+<br>
+
+<h3>Subtotal del pedido: <%= pedido_actual.subtotal %></h3>
+<h3>Impuesto a pagar en este pedido (16%): <%= pedido_actual.impuesto %></h3>
+<h2>Total del pedido: <%= pedido_actual.total %></h2>

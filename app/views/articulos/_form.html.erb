@@ -1,0 +1,9 @@
+
+<div>
+  <%= simple_form_for @articulo do |form| %>
+    <%= form.input :nombre %>
+    <%= form.input :precio, as: :numeric %>
+    <%= form.input :cantidad, as: :numeric %>
+    <%= form.button :submit, "Guardar" %>
+  <% end %>
+</div>

@@ -1,0 +1,16 @@
+<h1><%= @articulo.nombre %></h1>
+
+<table>
+  <tbody>
+    <tr>
+      <th scope='row'>Precio:</th>
+      <td><%= @articulo.precio %></td>
+    </tr>
+    <tr>
+      <th scope='row'>Cantidad:</th>
+      <td><%= @articulo.cantidad %></td>
+    </tr>
+  </tbody>
+</table>
+
+<%= link_to 'Regresar', root_path %>

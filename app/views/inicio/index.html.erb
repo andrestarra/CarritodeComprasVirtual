@@ -1,0 +1,35 @@
+<h1>Lista de artículos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nombre del artículo</th>
+      <th>Precio</th>
+      <th>Cantidad</th>
+      <th colspan='3'></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @articulos.each do |articulo| %>
+      <tr>
+        <td><%= articulo.nombre %></td>
+        <td><%= articulo.precio %></td>
+        <td><%= articulo.cantidad %></td>
+        <td><%= link_to 'Mostrar', inicio_path(articulo) %></td>
+
+        <%= simple_form_for @articulos_pedidos, remote: true do |form| %>
+          <%= form.input :articulo_id, as: :hidden, input_html: { value: articulo.id } %>
+          <td><%= form.input :cantidad, as: :numeric, input_html: { value: 1, min: 1 }, label: false %></td>
+          <td><%= form.button :submit, "Agregar al carrito" %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<div id="carrito">
+  <%= render 'carritos/carrito' %>
+</div>
